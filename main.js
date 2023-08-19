@@ -13,7 +13,7 @@ let inflationRate = 20
 let maxSize = 300
 let highestPopCount = 0
 let currentPopCount = 0
-let gameLength = 5000
+let gameLength = 10000
 let clockId = 0 //this lets us keep track of the number coming back from the setInterval so that we can stop it
 let timeRemaining = 0
 let currentPlayer = {}   //this will be an oject, so you add the = {} to make it clearer but you don't have to
