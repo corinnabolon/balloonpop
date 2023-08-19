@@ -1,0 +1,249 @@
+:root {
+    --primary: f393fd;
+    --primary-darken: rgb(167 57 179);
+    --primary-lighten: rgb(247, 137, 197);
+    --bg: rgb(224, 117, 117);
+    --shadow: 2px 0 8px rgba(0,0,0,.3);
+    --corners: 4px;
+    --text-color: rgb(20, 20, 20);
+    --dark: rgb(20, 20, 20);
+    --dark-lighten: rgb(53, 51, 51);
+    --light: rgb(253, 253, 253);
+}
+
+body {
+    background-color: var(--bg);
+    font-family: 'Permanent Marker', cursive;
+    font-size: 16pt;
+    color: var(--text-color);
+}
+
+header {
+    margin: 3em 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+form {
+    margin: 0;
+}
+
+input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--text-color);
+    outline: none;
+    font-size: 14px;
+}
+
+button {
+    background-color: var(--primary);
+    color: var(--light);
+    border: 1px solid var(--primary-darken);
+    border-radius: var(--corners);
+    box-shadow: var(--shadow);
+    text-transform: uppercase;
+    transition: all .2s ease;
+    cursor: pointer;
+    padding: 1em;
+}
+
+button:hover {
+    background-color: var(--primary-darken);
+}
+
+.game-container {
+    height: 300px;
+}
+
+.pump {
+    margin-top: 80px;
+    height: 130px;
+    width: 180px;
+    position: relative;
+    align-self: flex-end;
+}
+
+/* The "position: relative" in the parent div makes the position: absolute of the child div (handle) relative to the box (pump) it's in instead of relative to the entire page */
+
+.handle {
+    height: 10px;
+    width: 80px;
+    background-color: var(--dark-lighten);
+    position: absolute;
+    top: -80;   /* The box, the pump class itself, is at 80px, so without this the pump handle is in the same place; with this it goes higher than that */
+    left: 50;
+    display: flex;
+    justify-content: center;
+    transition: all .05s linear;  /* This makes the transition for the active, when clicked, smoother */
+    z-index: 1;   /* the z-index is the 3rd dimension index; the higher the z-index, the closer to the user, default is 0 and negatives are behind the entire page so never used; position ofthe element must be absolute to use*/
+}
+
+/* ::before is a pseudo-class which makes something else which is connected to the handle; useful if it always moves relative to the container */
+/* this pseudo-class needs you do add a "content" and a display type */
+
+.handle::before {
+    content: " ";
+    background-color: var(--dark-lighten);
+    height: 80px;
+    width: 10px;
+    display: block;
+}
+
+/* active is a pseudo-selector--when the pump is active (i.e. when clicked), we want to target the handle */
+
+.pump:active .handle {
+    top: -20px;
+}
+
+.pump-box {
+    background-color: var(--primary-lighten);
+    height: 130;
+    width: 180;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    z-index: 2;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.pump-box span {    /* This refers to the span within the pump-box div, which is its immediate child */
+    background-color: blanchedalmond;
+    padding: .5em;
+}
+
+.pump-box::before {
+    content: " ";
+    background-color: var(--dark);
+    height: 10px;
+    width: 180px;
+    position: absolute;
+    top: 107px;
+    display: block;
+}
+
+.balloon {
+    height: 120px;
+    width: 100px;  
+    border-radius: 50%;
+    transition: all .2s ease;
+    animation: balloon-float 5s ease-in-out infinite;
+    align-self: flex-end;
+    margin: 0 auto;
+    box-shadow: inset -10px -10px 12px rgba(0,0,0,.3);
+    background: rgb(67,1,1);
+    background: linear-gradient(-45deg, #430101 0%, #fa1e01 60%, #ff0000 80%, #ffffff 100%);
+}
+
+.balloon.green {
+    filter: hue-rotate(130deg);
+}
+
+.balloon.blue {
+    filter: hue-rotate(225deg);
+}
+
+.balloon.purple {
+    filter: hue-rotate(295deg);
+}
+
+.balloon.pink {
+    filter: hue-rotate(325deg);
+}
+
+@keyframes balloon-float {                /*  when using animations start with @, the word after that is the name you give it */
+    0%,100% {
+        transform: translateY(-25px) rotate(5deg);
+    }
+    50% {
+        transform: translateY(0px) rotate(-5deg);
+    }
+}
+
+.container {
+    width: 50%;
+    margin: auto;
+}
+
+@media screen and (max-width: 700px) {
+    .container {
+        width: 89%;
+    }
+}
+
+.card {
+    background-color: var(--light);
+    padding: 1em;
+    box-shadow: var(--shadow);
+    border-radius: var(--corners);
+}
+
+.shadow {
+    filter: drop-shadow(var(--shadow));
+}
+
+
+.bg-dark {
+    background-color: var(--dark);
+}
+
+
+.text-light {
+    color: var(--light);
+}
+
+.btn-dark {
+    background-color: var(--dark-lighten);
+    border: var(--dark);
+}
+.btn-dark:hover{
+    background-color: var(--dark);
+    border: var(--dark-lighten);
+}
+
+.d-flex {
+    display: flex;
+    align-items: center;
+}
+
+/* adding d-flex below is mostly to remind us that space-between only works when the display is flex, so they always have to go together */
+.d-flex.space-between {   
+    justify-content: space-between;
+}
+
+.d-flex.space-around {
+    justify-content: space-around;
+}
+
+.mt-1 {
+    margin-top: .5em;
+}
+.mt-2 {
+    margin-top: 1em;
+}
+.mt-3 {
+    margin-top: 1.5em;
+}
+
+.mb-1 {
+    margin-bottom: .5em;
+}
+.mb-2 {
+    margin-bottom: 1em;
+}
+.mb-3 {
+    margin-bottom: 1.5em;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}

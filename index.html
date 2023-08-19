@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balloon Pop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/dea8a89367.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container shadow">
+        <img src="balloon-pop-logo.png" alt="Balloon Pop Logo">
+    </div>
+</header>
+
+    <main class="card container">
+
+        <form class="d-flex space-between" id="player-form" onsubmit="setPlayer(event)">
+            <div>
+                <label for="name">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span>Player Name: </span></label>
+                    <input type="text" name="playerName" required>
+            </div>
+            <button type="submit">Ok</button>
+        </form>
+
+        <!-- TODO replace "hidden" class below -->
+        <section id="game" class="game hidden">
+            <div class="card bg-dark text-light">
+                <div class="d-flex space-between">
+                    <div>
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span id="player-name"></span>
+                    </div> 
+                    <div>
+                        <span>Top Popped: </span>
+                        <span id="highest-pop-count">0</span>
+                    </div>
+                </div>
+            </div> 
+
+            <div id="main-controls" class="d-flex space-around mt-2">
+                <button class="btn-dark" onclick="changePlayer()">Change Player</button>
+                <button id="start-button" onclick="startGame()">START GAME</button>
+            </div>
+
+            <!-- TODO: replace "hidden" class in div below -->
+            <div id="game-controls" class="hidden">
+                
+                <div>
+                    <span>Balloons Popped: </span>
+                    <span id="pop-count">0</span>
+                </div>
+                <div>
+                    <span>Time Remaining:</span>
+                    <span id="countdown">0</span>
+                </div>
+                
+                <div class="game-container d-flex">
+                    <div class="pump" onclick="inflate()">
+                        <div class="handle"></div>
+                        <div class="pump-box">
+                            <span id="click-count"></span>
+                            </div>
+                    </div>    
+                    <div id="balloon" class="balloon"></div>
+                    <audio src="burst.mp3" id="pop-sound"></audio>
+                </div>
+            </div>
+
+            </section>
+        </main>
+
+            <div id="scoreboard" class="container card mt-2">
+                <h3 class="text-center">Scoreboard</h3>
+                <div id="players"></div>
+            </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
+
+<!-- Just type doc and tab and it will fill in all of the necessary HTML elements
